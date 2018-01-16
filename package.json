@@ -1,0 +1,33 @@
+{
+  "name": "@etalab/fantoir",
+  "version": "0.1.0",
+  "description": "Toolkit for FANTOIR data manipulation in JS",
+  "main": "index.js",
+  "repository": "git@github.com:etalab/fantoir.git",
+  "author": "Jérôme Desboeufs <jerome.desboeufs@data.gouv.fr>",
+  "license": "MIT",
+  "bin": {
+    "fantoir2csv": "./bin/cli.js"
+  },
+  "scripts": {
+    "prepare": "node scripts/prepare",
+    "lint": "xo"
+  },
+  "dependencies": {
+    "csv-write-stream": "^2.0.0",
+    "lodash": "^4.17.4",
+    "mississippi": "^1.3.0",
+    "split2": "^2.2.0"
+  },
+  "devDependencies": {
+    "csv-parser": "^1.11.0",
+    "xo": "^0.18.2"
+  },
+  "xo": {
+    "space": 2,
+    "semicolon": false,
+    "rules": {
+      "camelcase": "off"
+    }
+  }
+}
