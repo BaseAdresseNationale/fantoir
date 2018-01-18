@@ -7,7 +7,8 @@
   "author": "Jérôme Desboeufs <jerome.desboeufs@data.gouv.fr>",
   "license": "MIT",
   "bin": {
-    "fantoir2csv": "./bin/fantoir2csv.js"
+    "fantoir2csv": "./bin/fantoir2csv.js",
+    "fantoir-dumpcodes": "./bin/fantoir-dumpcodes.js"
   },
   "scripts": {
     "prepare": "node scripts/prepare",
