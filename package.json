@@ -2,6 +2,9 @@
   "name": "@etalab/fantoir",
   "version": "0.1.0",
   "description": "Toolkit for FANTOIR data manipulation in JS",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "index.js",
   "repository": "git@github.com:etalab/fantoir.git",
   "author": "Jérôme Desboeufs <jerome.desboeufs@data.gouv.fr>",
