@@ -13,6 +13,12 @@
     "fantoir2csv": "./bin/fantoir2csv.js",
     "fantoir-dumpcodes": "./bin/fantoir-dumpcodes.js"
   },
+  "files": [
+    "bin",
+    "data/natures_voies.json",
+    "lib",
+    "index.js"
+  ],
   "scripts": {
     "prepare": "node scripts/prepare",
     "lint": "xo",
