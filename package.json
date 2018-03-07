@@ -11,7 +11,8 @@
   "license": "MIT",
   "bin": {
     "fantoir2csv": "./bin/fantoir2csv.js",
-    "fantoir-dumpcodes": "./bin/fantoir-dumpcodes.js"
+    "fantoir-dumpcodes": "./bin/fantoir-dumpcodes.js",
+    "fantoir-split": "./bin/fantoir-split.js"
   },
   "files": [
     "bin",
@@ -26,10 +27,13 @@
   },
   "dependencies": {
     "csv-write-stream": "^2.0.0",
+    "decompress": "^4.2.0",
     "fuzzyset.js": "^0.0.4",
     "gunzip-stream": "^1.0.0",
     "lodash": "^4.17.4",
+    "minimist": "^1.2.0",
     "mississippi": "^1.3.0",
+    "split-buffer": "^1.0.0",
     "split2": "^2.2.0"
   },
   "devDependencies": {
@@ -43,7 +47,8 @@
     "space": 2,
     "semicolon": false,
     "rules": {
-      "camelcase": "off"
+      "camelcase": "off",
+      "curly": "off"
     }
   }
 }
