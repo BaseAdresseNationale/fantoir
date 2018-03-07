@@ -11,7 +11,9 @@ function createDatabase(path, options = {}) {
     const fileStream = pipeline.obj(createReadStream(path), createGunzip(), parseStream())
     const records = []
     each(fileStream, (record, next) => {
-      records.push(record)
+      if (!options.filter || options.filter(record)) {
+        records.push(record)
+      }
       next()
     }, err => {
       if (err) {
