@@ -65,5 +65,5 @@ test('search', t => {
     t.true(r.score >= 0.5)
     t.true(r.score <= 1)
   })
-  t.deepEqual(result.map(r => r.id), ['23456-1234', '12345-6789'])
+  t.deepEqual(result.map(r => r.id), ['12345-6789', '23456-1234'])
 })
