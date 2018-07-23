@@ -5,7 +5,7 @@ test('parse voie', t => {
   const rawRecord = '5400840020FALL DES ACACIAS                N  3  0          00000000000000 00000001987001               001151   ACACIAS'
   t.deepEqual(parseVoie(rawRecord), {
     type: 'voie',
-    annee_ajout: '1987',
+    date_ajout: '1987-01-01',
     cle_rivoli: 'F',
     code_commune: '54084',
     code_departement: '54',
