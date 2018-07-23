@@ -4,6 +4,7 @@ const {parseVoie} = require('../lib/parse/voie')
 test('parse voie', t => {
   const rawRecord = '5400840020FALL DES ACACIAS                N  3  0          00000000000000 00000001987001               001151   ACACIAS'
   t.deepEqual(parseVoie(rawRecord), {
+    type: 'voie',
     annee_ajout: '1987',
     cle_rivoli: 'F',
     code_commune: '54084',
