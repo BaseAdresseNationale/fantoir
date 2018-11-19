@@ -10,8 +10,6 @@
   "author": "Jérôme Desboeufs <jerome.desboeufs@data.gouv.fr>",
   "license": "MIT",
   "bin": {
-    "fantoir2csv": "./bin/fantoir2csv.js",
-    "fantoir-dumpcodes": "./bin/fantoir-dumpcodes.js",
     "fantoir-split": "./bin/fantoir-split.js"
   },
   "files": [
