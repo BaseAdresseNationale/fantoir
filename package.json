@@ -19,7 +19,7 @@
     "index.js"
   ],
   "scripts": {
-    "prepare": "node scripts/prepare",
+    "prepare:natures-voies": "node bin/prepare-natures-voies",
     "experiment": "bin/fantoir-experiment.js",
     "lint": "xo",
     "test": "ava"
