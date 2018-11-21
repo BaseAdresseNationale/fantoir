@@ -4,18 +4,18 @@ const {InMemoryDatabase} = require('../lib/db/in-memory')
 const records = [
   {
     id: '12345-1234',
-    code_commune: '12345',
-    libelle_voie_complet: 'ALL D HONNEUR'
+    codeCommune: '12345',
+    libelleVoieComplet: 'ALL D HONNEUR'
   },
   {
     id: '12345-6789',
-    code_commune: '12345',
-    libelle_voie_complet: 'RUE REPUBLIQUE'
+    codeCommune: '12345',
+    libelleVoieComplet: 'RUE REPUBLIQUE'
   },
   {
     id: '23456-1234',
-    code_commune: '23456',
-    libelle_voie_complet: 'RUE REPUBLIQUE'
+    codeCommune: '23456',
+    libelleVoieComplet: 'RUE REPUBLIQUE'
   }
 ]
 
@@ -34,7 +34,7 @@ test('searchable database creation', t => {
 
 test('get by id', t => {
   const fantoir = new InMemoryDatabase(records)
-  t.is(fantoir.get('12345-1234').libelle_voie_complet, 'ALL D HONNEUR')
+  t.is(fantoir.get('12345-1234').libelleVoieComplet, 'ALL D HONNEUR')
 })
 
 test('commune subset', t => {
@@ -46,7 +46,7 @@ test('commune subset', t => {
 
 test('custom subset', t => {
   const fantoir = new InMemoryDatabase(records, {searchable: true})
-  const subset = fantoir.subset(r => r.code_commune === '23456')
+  const subset = fantoir.subset(r => r.codeCommune === '23456')
   t.is(subset.size, 1)
   t.throws(() => subset.search('toto'), 'Database not searchable')
 })
@@ -61,7 +61,7 @@ test('search', t => {
   const result = fantoir.search('r republiq')
   t.is(result.length, 2)
   result.forEach(r => {
-    t.is(r.libelle_voie_complet, 'RUE REPUBLIQUE')
+    t.is(r.libelleVoieComplet, 'RUE REPUBLIQUE')
     t.true(r.score >= 0.5)
     t.true(r.score <= 1)
   })

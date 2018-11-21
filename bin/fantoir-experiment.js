@@ -6,7 +6,7 @@ const {createGunzip} = require('gunzip-stream')
 const {through} = require('mississippi')
 const pipe = promisify(require('mississippi').pipe)
 const {last} = require('lodash')
-const {parseStream} = require('../lib/parse/stream')
+const {createParser} = require('@etalab/fantoir-parser')
 const Model = require('../lib/history/build/model')
 const {datesNearlyEquals} = require('../lib/history/build/dates')
 const {handleCancelledCommunes} = require('../lib/history/build/cancelled-communes')
@@ -21,23 +21,23 @@ async function main() {
   await pipe(
     process.stdin,
     createGunzip(),
-    parseStream({accept: ['commune', 'voie', 'eof']}),
+    createParser({accept: ['commune', 'voie', 'eof']}),
     through.obj(
       (record, enc, cb) => {
         if (record.type === 'voie') {
           const voie = model.upsertVoie(record, currentCommune)
-          if (voie.libelle.length === 0 || last(voie.libelle) !== record.libelle_voie_complet) {
-            voie.libelle.push(record.libelle_voie_complet)
+          if (voie.libelle.length === 0 || last(voie.libelle) !== record.libelleVoieComplet) {
+            voie.libelle.push(record.libelleVoieComplet)
           }
-          if (!voie.annulee && record.date_annulation) {
+          if (!voie.annulee && record.dateAnnulation) {
             voie.annulee = true
-            voie.dateAnnulation = record.date_annulation
-            voie.transferee = record.type_annulation === 'avec transfert'
-            if (datesNearlyEquals(record.date_annulation, currentCommune.date_annulation)) {
-              voie.annulationCommune = currentCommune.date_annulation
+            voie.dateAnnulation = record.dateAnnulation
+            voie.transferee = record.typeAnnulation === 'avec transfert'
+            if (datesNearlyEquals(record.dateAnnulation, currentCommune.dateAnnulation)) {
+              voie.annulationCommune = currentCommune.dateAnnulation
             }
           }
-          voie.nomCommune = currentCommune.libelle_commune
+          voie.nomCommune = currentCommune.nomCommune
         }
         if (record.type === 'commune') {
           model.upsertCommune(record)

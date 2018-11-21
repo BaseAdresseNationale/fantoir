@@ -11,19 +11,18 @@
   "license": "MIT",
   "files": [
     "bin",
-    "data/natures_voies.json",
     "lib",
     "index.js"
   ],
   "scripts": {
     "prepare:data": "node bin/prepare-data",
-    "prepare:natures-voies": "node bin/prepare-natures-voies",
     "experiment": "bin/fantoir-experiment.js",
     "lint": "xo",
     "test": "ava"
   },
   "dependencies": {
     "@etalab/cog": "^0.1.0",
+    "@etalab/fantoir-parser": "^0.1.1",
     "@keyv/sqlite": "^2.0.0",
     "chalk": "^2.4.1",
     "csv-write-stream": "^2.0.0",
@@ -36,17 +35,10 @@
   },
   "devDependencies": {
     "ava": "^0.25.0",
-    "csv-parser": "^2.1.0",
-    "get-stream": "^4.1.0",
-    "into-stream": "^4.0.0",
     "xo": "^0.23.0"
   },
   "xo": {
     "space": 2,
-    "semicolon": false,
-    "rules": {
-      "camelcase": "off",
-      "curly": "off"
-    }
+    "semicolon": false
   }
 }

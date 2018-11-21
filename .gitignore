@@ -36,8 +36,8 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-/data/natures_voies.json
-
 /db
 
 .DS_Store
+
+fantoir.sqlite
