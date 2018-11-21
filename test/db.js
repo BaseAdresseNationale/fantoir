@@ -1,5 +1,5 @@
 const test = require('ava')
-const {InMemoryDatabase} = require('../lib/db')
+const {InMemoryDatabase} = require('../lib/db/in-memory')
 
 const records = [
   {

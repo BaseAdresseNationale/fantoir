@@ -1,27 +1,30 @@
 const {createReadStream} = require('fs')
 const {createGunzip} = require('gunzip-stream')
+const {pipeline} = require('mississippi')
 
-const {pipeline, each} = require('mississippi')
+const {streamToRecords} = require('./lib/parse/stream')
+const {InMemoryDatabase} = require('./lib/db/in-memory')
+const {SQLiteDatabase} = require('./lib/db/sqlite')
 
-const {parseStream} = require('./lib/parse/stream')
-const {InMemoryDatabase} = require('./lib/db')
+async function createRawDatabase(path, options) {
+  const records = await streamToRecords(
+    pipeline(
+      createReadStream(path),
+      createGunzip()
+    )
+  )
+  return new InMemoryDatabase(records, {searchable: false, ...options})
+}
+
+function createSqliteDatabase(path) {
+  return new SQLiteDatabase(path)
+}
 
 function createDatabase(path, options = {}) {
-  return new Promise((resolve, reject) => {
-    const fileStream = pipeline.obj(createReadStream(path), createGunzip(), parseStream())
-    const records = []
-    each(fileStream, (record, next) => {
-      if (!options.filter || options.filter(record)) {
-        records.push(record)
-      }
-      next()
-    }, err => {
-      if (err) {
-        return reject(err)
-      }
-      resolve(new InMemoryDatabase(records, {searchable: false, ...options}))
-    })
-  })
+  if (options.type === 'sqlite') {
+    return createSqliteDatabase(path, options)
+  }
+  return createRawDatabase(path, options)
 }
 
 module.exports = {createDatabase}

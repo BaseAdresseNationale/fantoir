@@ -13,6 +13,7 @@ test('parse voie', t => {
     code_nature_voie: 'ALL',
     code_rivoli: '0020',
     code_type_voie: '1',
+    hid: 'voie:54084-0020@1987-01-01',
     id: '54084-0020',
     libelle_voie: 'DES ACACIAS',
     libelle_voie_complet: 'ALLEE DES ACACIAS',

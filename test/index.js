@@ -1,6 +1,6 @@
 const {join} = require('path')
 const test = require('ava')
-const {createDatabase} = require('../')
+const {createDatabase} = require('..')
 
 const FANTOIR_90_PATH = join(__dirname, 'fixtures', 'FANTOIR_90.gz')
 
