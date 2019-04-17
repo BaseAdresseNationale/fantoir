@@ -24,6 +24,7 @@ function createDatabase(path, options = {}) {
   if (options.type === 'sqlite') {
     return createSqliteDatabase(path, options)
   }
+
   return createRawDatabase(path, options)
 }
 

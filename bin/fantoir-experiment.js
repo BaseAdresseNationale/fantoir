@@ -29,6 +29,7 @@ async function main() {
           if (voie.libelle.length === 0 || last(voie.libelle) !== record.libelleVoieComplet) {
             voie.libelle.push(record.libelleVoieComplet)
           }
+
           if (!voie.annulee && record.dateAnnulation) {
             voie.annulee = true
             voie.dateAnnulation = record.dateAnnulation
@@ -37,17 +38,21 @@ async function main() {
               voie.annulationCommune = currentCommune.dateAnnulation
             }
           }
+
           voie.nomCommune = currentCommune.nomCommune
         }
+
         if (record.type === 'commune') {
           model.upsertCommune(record)
           currentCommune = record
         }
+
         if (record.type === 'eof') {
           console.log(chalk.gray('-- End of file --'))
           handleCancelledCommunes(model)
           model.cleanup()
         }
+
         cb()
       },
       cb => {
