@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@etalab/cog": "^0.1.0",
-    "@etalab/fantoir-parser": "^0.1.1",
+    "@etalab/fantoir-parser": "^0.2.0",
     "@keyv/sqlite": "^2.0.0",
     "chalk": "^2.4.1",
     "csv-write-stream": "^2.0.0",
