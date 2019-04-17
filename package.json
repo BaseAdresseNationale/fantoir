@@ -24,14 +24,14 @@
     "@etalab/cog": "^0.1.0",
     "@etalab/fantoir-parser": "^0.2.0",
     "@keyv/sqlite": "^2.0.0",
-    "chalk": "^2.4.1",
+    "chalk": "^2.4.2",
     "csv-write-stream": "^2.0.0",
-    "fuzzyset.js": "^0.0.7",
+    "fuzzyset.js": "^0.0.8",
     "gunzip-stream": "^1.0.1",
     "keyv": "^3.1.0",
     "lodash": "^4.17.11",
     "pumpify": "^1.5.1",
-    "split2": "^3.0.0",
+    "split2": "^3.1.1",
     "through2": "^3.0.1"
   },
   "devDependencies": {
