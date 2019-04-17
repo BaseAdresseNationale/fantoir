@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 const {promisify} = require('util')
+const pipeline = promisify(require('stream').pipeline)
 const split = require('split2')
 const {createGunzip} = require('gunzip-stream')
-const {through} = require('mississippi')
+const through = require('through2')
 const Keyv = require('keyv')
-
-const pipe = promisify(require('mississippi').pipe)
 
 const keyv = new Keyv('sqlite://fantoir.sqlite')
 
@@ -42,7 +41,7 @@ async function eachLine(line, enc, next) {
 
 async function main() {
   await keyv.clear()
-  await pipe(
+  await pipeline(
     process.stdin,
     createGunzip(),
     split(),

@@ -30,8 +30,9 @@
     "gunzip-stream": "^1.0.1",
     "keyv": "^3.1.0",
     "lodash": "^4.17.11",
-    "mississippi": "^3.0.0",
-    "split2": "^3.0.0"
+    "pumpify": "^1.5.1",
+    "split2": "^3.0.0",
+    "through2": "^3.0.1"
   },
   "devDependencies": {
     "ava": "^1.4.1",
@@ -40,5 +41,8 @@
   "xo": {
     "space": 2,
     "semicolon": false
+  },
+  "engines": {
+    "node": ">= 10"
   }
 }
