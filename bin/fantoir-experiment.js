@@ -21,7 +21,7 @@ async function main() {
   await pipeline(
     process.stdin,
     createGunzip(),
-    createParser({accept: ['commune', 'voie', 'eof']}),
+    createParser({accept: ['commune', 'voie', 'eof'], dateFormat: 'integer'}),
     through.obj(
       (record, enc, cb) => {
         if (record.type === 'voie') {
