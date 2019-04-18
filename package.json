@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "prepare:data": "node bin/prepare-data",
-    "experiment": "bin/fantoir-experiment.js",
+    "experiment": "node --max_old_space_size=8192 bin/fantoir-experiment",
     "lint": "xo",
     "test": "ava"
   },
