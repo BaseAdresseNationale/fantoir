@@ -328,10 +328,10 @@
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@etalab/cog/-/cog-0.1.0.tgz#a54b48600cb4714f46eaba6fc5152104e0465f4a"
 
-"@etalab/fantoir-parser@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@etalab/fantoir-parser/-/fantoir-parser-0.3.0.tgz#07dc4bef7dd543ced9bb5a6414ca6db695b746db"
-  integrity sha512-8Tqs7A3TsmPMNuV6rpQwqlL4tJR3Nt8uQ+Vh08dDmmMsuOFuzsdwuvWTY6D/wsGiEBufxCGNU5nvH05XSPKMNw==
+"@etalab/fantoir-parser@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@etalab/fantoir-parser/-/fantoir-parser-0.4.0.tgz#f2974660717e99c934075f9fbae21699dc658aca"
+  integrity sha512-D6q8MTxg2XYPsy7xCsfDGkcQppchpjf8UaqQqU2U3sad6KSEw9iikyJCwkiPcDmnB0AfUpIBqWbYpbrBDfhx/g==
   dependencies:
     get-stream "^5.1.0"
     into-stream "^5.1.0"
