@@ -15,7 +15,6 @@
     "index.js"
   ],
   "scripts": {
-    "prepare:data": "node bin/prepare-data",
     "experiment": "node --max_old_space_size=8192 bin/fantoir-experiment",
     "lint": "xo",
     "test": "ava"
@@ -32,7 +31,6 @@
     "keyv": "^3.1.0",
     "lodash": "^4.17.11",
     "pumpify": "^1.5.1",
-    "split2": "^3.1.1",
     "through2": "^3.0.1"
   },
   "devDependencies": {
