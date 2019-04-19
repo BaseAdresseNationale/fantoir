@@ -2,6 +2,7 @@
 const {promisify} = require('util')
 const {join} = require('path')
 const pipeline = promisify(require('stream').pipeline)
+const debug = require('debug')('fantoir-experiment')
 const chalk = require('chalk')
 const {createGunzip} = require('gunzip-stream')
 const through = require('through2')
@@ -17,6 +18,8 @@ const destPath = join(__dirname, '..', 'fantoir.csv.gz')
 async function main() {
   const model = new Model()
   let currentCommune
+
+  debug('start processing input file')
 
   await pipeline(
     process.stdin,
@@ -48,22 +51,28 @@ async function main() {
         }
 
         if (record.type === 'eof') {
-          console.log(chalk.gray('-- End of file --'))
+          debug('end of file')
+          debug('post-processing communes annulées')
           handleCancelledCommunes(model)
+          debug('continue processing')
           model.cleanup()
         }
 
         cb()
       },
       cb => {
+        debug('post-processing communes annulées')
         handleCancelledCommunes(model)
         model.cleanup()
+        debug('end of processing')
         cb()
       }
     )
   )
 
+  debug('start exporting as CSV')
   await exportAsCsv(model, destPath)
+  debug('end exporting as CSV')
 }
 
 main().catch(error => {

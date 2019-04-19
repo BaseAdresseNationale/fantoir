@@ -26,6 +26,7 @@
     "@keyv/sqlite": "^2.0.0",
     "chalk": "^2.4.2",
     "csv-write-stream": "^2.0.0",
+    "debug": "^4.1.1",
     "fuzzyset.js": "^0.0.8",
     "gunzip-stream": "^1.0.1",
     "keyv": "^3.1.0",
