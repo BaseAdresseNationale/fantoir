@@ -10,12 +10,11 @@
   "author": "Jérôme Desboeufs <jerome.desboeufs@data.gouv.fr>",
   "license": "MIT",
   "files": [
-    "bin",
     "lib",
     "index.js"
   ],
   "scripts": {
-    "experiment": "node --max_old_space_size=8192 bin/fantoir-experiment",
+    "build": "node --max_old_space_size=8192 build",
     "lint": "xo",
     "test": "ava"
   },
