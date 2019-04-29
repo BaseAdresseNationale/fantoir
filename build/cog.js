@@ -1,7 +1,33 @@
-const {keyBy} = require('lodash')
-const communes = require('@etalab/cog/data/communes.json')
+const {groupBy, keyBy, maxBy} = require('lodash')
+const historiqueCommunes = require('@etalab/decoupage-administratif/data/historique-communes.json')
+const arrondissementsMunicipaux = require('@etalab/decoupage-administratif/data/communes.json')
+  .filter(c => c.type === 'arrondissement-municipal')
+  .map(c => ({code: c.code, nom: c.nom, type: 'COM'}))
 
-const cogCommunesIndex = keyBy(communes, 'code')
+function connectGraph(historiqueCommunes) {
+  const byId = keyBy(historiqueCommunes, 'id')
+  historiqueCommunes.forEach(h => {
+    if (h.successeur) {
+      h.successeur = byId[h.successeur]
+    }
+
+    if (h.predecesseur) {
+      h.predecesseur = byId[h.predecesseur]
+    }
+
+    if (h.pole) {
+      h.pole = byId[h.pole]
+    }
+
+    if (h.membres) {
+      h.membres = h.membres.map(m => byId[m])
+    }
+  })
+}
+
+connectGraph(historiqueCommunes)
+
+const byCodeCommune = groupBy(historiqueCommunes.concat(arrondissementsMunicipaux), h => `${h.type}${h.code}`)
 
 const MARSEILLE_MAPPING = {
   13331: '13201',
@@ -22,12 +48,6 @@ const MARSEILLE_MAPPING = {
   13346: '13216'
 }
 
-const NOMS_OVERRIDES = {
-  '06900': 'Monaco',
-  97123: 'Saint-Barthélemy',
-  97127: 'Saint-Martin'
-}
-
 function normalizeCodeCommune(codeCommune) {
   if (codeCommune in MARSEILLE_MAPPING) {
     return MARSEILLE_MAPPING[codeCommune]
@@ -36,42 +56,51 @@ function normalizeCodeCommune(codeCommune) {
   return codeCommune
 }
 
-function getCommune(codeCommune) {
-  codeCommune = normalizeCodeCommune(codeCommune)
-  return cogCommunesIndex[codeCommune]
+function getCodeDepartement(codeCommune) {
+  return codeCommune.startsWith('97') ? codeCommune.substr(0, 3) : codeCommune.substr(0, 2)
 }
 
-function getCommuneActuelle(codeCommune) {
-  const commune = getCommune(codeCommune)
-  if (!commune) {
-    return
+const COM = {
+  97123: {code: '97123', nom: 'Saint-Barthelemy', type: 'COM'},
+  97127: {code: '97127', nom: 'Saint-Martin', type: 'COM'}
+}
+
+function getCommune(codeCommune) {
+  if (codeCommune in COM) {
+    return COM[codeCommune]
   }
 
-  if (commune.type === 'commune-actuelle' || commune.type === 'arrondissement-municipal') {
-    return codeCommune
+  const candidates = byCodeCommune[`COM${codeCommune}`]
+
+  if (candidates) {
+    return candidates.find(c => !c.dateFin)
+  }
+}
+
+function getCommuneActuelle(communeEntry) {
+  if (typeof communeEntry === 'string') {
+    const candidates = byCodeCommune[`COM${normalizeCodeCommune(communeEntry)}`]
+    if (candidates) {
+      return getCommuneActuelle(maxBy(candidates, c => c.dateFin || '9999-99-99'))
+    }
   }
 
-  if (commune.type === 'ancien-code') {
-    return getCommuneActuelle(commune.nouveauCode)
+  if (!communeEntry.dateFin && communeEntry.type === 'COM') {
+    return communeEntry
   }
 
-  if (commune.type === 'commune-deleguee' || commune.type === 'commune-associee') {
-    return getCommuneActuelle(commune.chefLieu)
+  if (!communeEntry.dateFin) {
+    return getCommuneActuelle(communeEntry.pole)
   }
 
-  if (commune.type === 'commune-perimee') {
-    return getCommuneActuelle(commune.communeAbsorbante)
+  if (communeEntry.successeur) {
+    return getCommuneActuelle(communeEntry.successeur)
   }
-
-  throw new Error(`Type de commune non prévu : ${commune.type}`)
 }
 
 function getNomCommune(codeCommune) {
-  if (codeCommune in NOMS_OVERRIDES) {
-    return NOMS_OVERRIDES[codeCommune]
-  }
-
   const commune = getCommune(codeCommune)
+
   if (!commune) {
     throw new Error('Code commune inconnue : ' + codeCommune)
   }
@@ -79,4 +108,4 @@ function getNomCommune(codeCommune) {
   return commune.nom
 }
 
-module.exports = {getCommuneActuelle, getNomCommune, getCommune}
+module.exports = {getCodeDepartement, getCommune, getCommuneActuelle, getNomCommune}

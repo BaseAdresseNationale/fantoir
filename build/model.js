@@ -71,7 +71,6 @@ class Model {
     const voie = this.getVoie(codeCommune, codeVoie)
 
     if (!voie) {
-      console.log(idVoie)
       throw new Error('Voie inconnue')
     }
 

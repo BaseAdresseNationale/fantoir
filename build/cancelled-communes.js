@@ -12,12 +12,12 @@ function handleCancelledCommunes(model) {
         return null
       }
 
-      if (!model.hasCommune(communeActuelle)) {
-        console.log(chalk.red(`Commune actuelle non présente dans le fichier : ${communeActuelle}`))
+      if (!model.hasCommune(communeActuelle.code)) {
+        console.log(chalk.red(`Commune actuelle non présente dans le fichier : ${communeActuelle.code}`))
         return null
       }
 
-      return {communeAncienne, communeActuelle}
+      return {communeAncienne, communeActuelle: communeActuelle.code}
     })
     .compact()
     .groupBy('communeActuelle')
