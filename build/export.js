@@ -1,49 +1,42 @@
-/* eslint camelcase: off */
 const {promisify} = require('util')
-const finished = promisify(require('stream').finished)
-const {createWriteStream} = require('fs')
-const {createGzip} = require('zlib')
-const csvWriter = require('csv-write-stream')
-const pumpify = require('pumpify')
-const {getNomCommune, getCommune} = require('./cog')
+const gzip = promisify(require('zlib').gzip)
+const {chain} = require('lodash')
+const {remove} = require('fs-extra')
+const bluebird = require('bluebird')
+const Keyv = require('keyv')
+const {getCommunes, getCodesMembres} = require('./cog')
 
-function exportAsCsv(model, destPath) {
-  const output = createWriteStream(destPath)
+async function exportAsKeyValueStore(model, destPath) {
+  await remove(destPath)
+  const keyv = new Keyv('sqlite://' + destPath)
 
-  const csvStream = pumpify.obj(
-    csvWriter(),
-    createGzip(),
-    output
-  )
+  await bluebird.each(getCommunes(), async commune => {
+    const codesCommunesAssocies = getCodesMembres(commune)
+    const voies = chain(codesCommunesAssocies)
+      .map(codeCommuneAssocie => {
+        return model.getVoies(codeCommuneAssocie)
+          .map(voie => {
+            const flattenedVoie = {...voie}
 
-  model.getCommunes().forEach(communeEntry => {
-    const codeCommune = communeEntry.id
-    const commune = getCommune(codeCommune)
-    if (!commune) {
-      return
-    }
+            if (voie.successeur) {
+              flattenedVoie.successeur = voie.successeur.id
+            }
 
-    const voies = model.getVoies(codeCommune)
-    voies.forEach(voie => {
-      csvStream.write({
-        id: voie.id,
-        type_voie: voie.typeVoie,
-        date_ajout: voie.dateAjout,
-        date_annulation: voie.dateAnnulation,
-        code_fantoir: voie.codeFantoir,
-        code_commune: voie.codeCommune,
-        nom_commune: getNomCommune(voie.codeCommune) || '',
-        libelle: model.getLibelleVoie(voie.id).join(' => '),
-        successeur: voie.successeur ? voie.successeur.id : '',
-        predecesseur: voie.predecesseur ? voie.predecesseur.id : '',
-        ancienne_commune: voie.predecesseur ? (getNomCommune(voie.predecesseur.codeCommune) || '') : ''
+            if (voie.predecesseur) {
+              flattenedVoie.predecesseur = voie.predecesseur.id
+            }
+
+            return flattenedVoie
+          })
       })
-    })
+      .flatten()
+      .compact()
+      .value()
+
+    if (voies.length > 0) {
+      await keyv.set(commune.code, voies)
+    }
   })
-
-  csvStream.end()
-
-  return finished(output)
 }
 
-module.exports = {exportAsCsv}
+module.exports = {exportAsKeyValueStore}

@@ -1,4 +1,4 @@
-const {groupBy, keyBy, maxBy} = require('lodash')
+const {groupBy, keyBy, maxBy, uniq, flattenDeep} = require('lodash')
 const historiqueCommunes = require('@etalab/decoupage-administratif/data/historique-communes.json')
 const arrondissementsMunicipaux = require('@etalab/decoupage-administratif/data/communes.json')
   .filter(c => c.type === 'arrondissement-municipal')
@@ -80,9 +80,12 @@ function getCommune(codeCommune) {
 function getCommuneActuelle(communeEntry) {
   if (typeof communeEntry === 'string') {
     const candidates = byCodeCommune[`COM${normalizeCodeCommune(communeEntry)}`]
+
     if (candidates) {
       return getCommuneActuelle(maxBy(candidates, c => c.dateFin || '9999-99-99'))
     }
+
+    return
   }
 
   if (!communeEntry.dateFin && communeEntry.type === 'COM') {
@@ -98,14 +101,17 @@ function getCommuneActuelle(communeEntry) {
   }
 }
 
-function getNomCommune(codeCommune) {
-  const commune = getCommune(codeCommune)
-
-  if (!commune) {
-    throw new Error('Code commune inconnue : ' + codeCommune)
-  }
-
-  return commune.nom
+function getCodesMembres(commune) {
+  return uniq([
+    commune.code,
+    ...flattenDeep((commune.membres || []).map(getCodesMembres)),
+    ...flattenDeep(commune.predecesseur ? getCodesMembres(commune.predecesseur) : [commune.code])
+  ])
 }
 
-module.exports = {getCodeDepartement, getCommune, getCommuneActuelle, getNomCommune}
+function getCommunes() {
+  return historiqueCommunes
+    .filter(h => !h.dateFin && h.type === 'COM')
+}
+
+module.exports = {getCommunes, getCodesMembres, getCodeDepartement, getCommune, getCommuneActuelle}

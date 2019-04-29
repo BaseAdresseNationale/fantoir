@@ -55,7 +55,11 @@ class Model {
   }
 
   getVoies(codeCommune) {
-    return [...this._communesIndex.get(codeCommune).voies.values()]
+    if (this._communesIndex.has(codeCommune)) {
+      return [...this._communesIndex.get(codeCommune).voies.values()]
+    }
+
+    return []
   }
 
   getVoie(codeCommune, codeVoie) {

@@ -10,9 +10,9 @@ const {createParser} = require('@etalab/fantoir-parser')
 const Model = require('./model')
 const {datesNearlyEquals} = require('./dates')
 const {handleCancelledCommunes} = require('./cancelled-communes')
-const {exportAsCsv} = require('./export')
+const {exportAsKeyValueStore} = require('./export')
 
-const destPath = join(__dirname, '..', 'fantoir.csv.gz')
+const destPath = join(__dirname, '..', 'fantoir.sqlite')
 
 async function main() {
   const model = new Model()
@@ -69,9 +69,9 @@ async function main() {
     )
   )
 
-  debug('start exporting as CSV')
-  await exportAsCsv(model, destPath)
-  debug('end exporting as CSV')
+  debug('start exporting as KV store')
+  await exportAsKeyValueStore(model, destPath)
+  debug('end exporting as KV store')
 }
 
 main().catch(error => {
