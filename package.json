@@ -18,13 +18,13 @@
     "lint": "xo"
   },
   "dependencies": {
-    "@etalab/decoupage-administratif": "^0.5.0",
     "@keyv/sqlite": "^2.0.0",
     "fuzzyset.js": "^0.0.8",
     "keyv": "^3.1.0",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
+    "@etalab/decoupage-administratif": "^0.5.0",
     "@etalab/fantoir-parser": "^0.4.0",
     "bluebird": "^3.5.4",
     "chalk": "^2.4.2",
