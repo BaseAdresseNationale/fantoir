@@ -1,4 +1,4 @@
-# @etalab/fantoir [![npm version](https://img.shields.io/npm/v/@etalab/fantoir.svg)](https://www.npmjs.com/package/@etalab/fantoir) [![CircleCI](https://circleci.com/gh/etalab/fantoir.svg?style=svg)](https://circleci.com/gh/etalab/fantoir)
+# @etalab/fantoir [![npm version](https://img.shields.io/npm/v/@etalab/fantoir.svg)](https://www.npmjs.com/package/@etalab/fantoir)
 
 Bibliothèque permettant d'interroger facilement la base [FANTOIR](https://www.data.gouv.fr/fr/datasets/fichier-fantoir-des-voies-et-lieux-dits/).
 
@@ -14,7 +14,7 @@ yarn add @etalab/fantoir
 
 ### Utilisation
 
-```
+```js
 const {createFantoirCommune} = require('@etalab/fantoir')
 const fantoirCommune = await createFantoirCommune('54099')
 
