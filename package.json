@@ -18,7 +18,7 @@
     "lint": "xo"
   },
   "dependencies": {
-    "@etalab/adresses-util": "^0.4.0",
+    "@etalab/adresses-util": "^0.6.0",
     "@keyv/sqlite": "^2.0.0",
     "keyv": "^3.1.0",
     "leven": "^3.1.0",
