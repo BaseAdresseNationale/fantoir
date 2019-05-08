@@ -25,7 +25,7 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "@etalab/decoupage-administratif": "^0.5.0",
+    "@etalab/decoupage-administratif": "^0.6.2",
     "@etalab/fantoir-parser": "^0.4.0",
     "bluebird": "^3.5.4",
     "chalk": "^2.4.2",

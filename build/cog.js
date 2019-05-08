@@ -1,31 +1,8 @@
-const {groupBy, keyBy, maxBy, uniq, flattenDeep} = require('lodash')
-const historiqueCommunes = require('@etalab/decoupage-administratif/data/historique-communes.json')
+const {groupBy, maxBy, uniq, flattenDeep} = require('lodash')
+const historiqueCommunes = require('@etalab/decoupage-administratif/graph-communes')
 const arrondissementsMunicipaux = require('@etalab/decoupage-administratif/data/communes.json')
   .filter(c => c.type === 'arrondissement-municipal')
   .map(c => ({code: c.code, nom: c.nom, type: 'COM'}))
-
-function connectGraph(historiqueCommunes) {
-  const byId = keyBy(historiqueCommunes, 'id')
-  historiqueCommunes.forEach(h => {
-    if (h.successeur) {
-      h.successeur = byId[h.successeur]
-    }
-
-    if (h.predecesseur) {
-      h.predecesseur = byId[h.predecesseur]
-    }
-
-    if (h.pole) {
-      h.pole = byId[h.pole]
-    }
-
-    if (h.membres) {
-      h.membres = h.membres.map(m => byId[m])
-    }
-  })
-}
-
-connectGraph(historiqueCommunes)
 
 const byCodeCommune = groupBy(historiqueCommunes.concat(arrondissementsMunicipaux), h => `${h.type}${h.code}`)
 
