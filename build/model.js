@@ -11,7 +11,8 @@ function initVoie(voie) {
     libelle: [],
     typeVoie: voie.typeVoie,
     codeCommune: voie.codeCommune,
-    codeFantoir: voie.codeRivoli
+    codeFantoir: voie.codeRivoli,
+    cleRivoli: voie.cleRivoli
   }
 }
 
