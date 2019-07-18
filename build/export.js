@@ -1,5 +1,3 @@
-const {promisify} = require('util')
-const gzip = promisify(require('zlib').gzip)
 const {chain} = require('lodash')
 const {remove} = require('fs-extra')
 const bluebird = require('bluebird')
