@@ -89,6 +89,7 @@ function getCodesMembres(commune) {
 function getCommunes() {
   return historiqueCommunes
     .filter(h => !h.dateFin && h.type === 'COM')
+    .concat(arrondissementsMunicipaux)
 }
 
 module.exports = {getCommunes, getCodesMembres, getCodeDepartement, getCommune, getCommuneActuelle}
