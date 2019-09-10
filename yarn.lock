@@ -18,14 +18,14 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@etalab/adresses-util@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@etalab/adresses-util/-/adresses-util-0.6.0.tgz#2841bc13196b02787bcc1088626ad843aab80d8f"
-  integrity sha512-iuGzP6HxxwENNpWjVPKxUfcjQUgcYL7UbWNIxeBCxeSrUqVKlChUouH867kvu3NIdiC8xbCqe5bufmwKDKhqLQ==
+"@etalab/adresses-util@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@etalab/adresses-util/-/adresses-util-0.7.0.tgz#510ebe53380ad86a5cccee69e167773733395c4f"
+  integrity sha512-b9LvKNIKmgNiCQ2pQiPf7O964LtQ4gqAlXtCXB4+1eZS/CxJQyjWfDKUAe+BRCTdQPyIcClRZZVWhRQOaKWRsg==
   dependencies:
     "@turf/distance" "^6.0.1"
     leven "^3.1.0"
-    lodash "^4.17.11"
+    lodash "^4.17.15"
     talisman "^0.21.0"
     written-number "^0.9.1"
 
