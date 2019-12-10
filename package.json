@@ -19,16 +19,16 @@
   },
   "dependencies": {
     "@etalab/adresses-util": "^0.7.0",
-    "@keyv/sqlite": "^2.0.1",
-    "keyv": "^3.1.0",
+    "@keyv/sqlite": "^2.0.2",
+    "keyv": "^4.0.0",
     "leven": "^3.1.0",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@etalab/decoupage-administratif": "^0.6.2",
-    "@etalab/fantoir-parser": "^0.4.1",
-    "bluebird": "^3.5.5",
-    "chalk": "^2.4.2",
+    "@etalab/fantoir-parser": "^0.4.2",
+    "bluebird": "^3.7.2",
+    "chalk": "^3.0.0",
     "debug": "^4.1.1",
     "fs-extra": "^8.1.0",
     "gunzip-stream": "^1.0.1",
