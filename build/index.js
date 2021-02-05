@@ -1,10 +1,10 @@
 #!/usr/bin/env node --max_old_space_size=8192
 const {promisify} = require('util')
 const {join} = require('path')
+const {Transform} = require('stream')
 const pipeline = promisify(require('stream').pipeline)
 const debug = require('debug')('fantoir:build')
 const {createGunzip} = require('gunzip-stream')
-const through = require('through2')
 const {last} = require('lodash')
 const {createParser} = require('@etalab/fantoir-parser')
 const Model = require('./model')
@@ -24,8 +24,9 @@ async function main() {
     process.stdin,
     createGunzip(),
     createParser({accept: ['commune', 'voie', 'eof'], dateFormat: 'integer'}),
-    through.obj(
-      (record, enc, cb) => {
+    new Transform({
+      objectMode: true,
+      transform(record, enc, cb) {
         if (record.type === 'voie') {
           const voie = model.upsertVoie(record, currentCommune)
           if (voie.libelle.length === 0 || last(voie.libelle) !== record.libelleVoieComplet) {
@@ -59,14 +60,14 @@ async function main() {
 
         cb()
       },
-      cb => {
+      flush(cb) {
         debug('post-processing communes annulées')
         handleCancelledCommunes(model)
         model.cleanup()
         debug('end of processing')
         cb()
       }
-    )
+    })
   )
 
   debug('start exporting as KV store')
