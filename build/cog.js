@@ -1,6 +1,8 @@
 const {groupBy, maxBy, uniq, flattenDeep} = require('lodash')
 const historiqueCommunes = require('@etalab/decoupage-administratif/graph-communes')
-const arrondissementsMunicipaux = require('@etalab/decoupage-administratif/data/communes.json')
+const communesTotales = require('@etalab/decoupage-administratif/data/communes.json')
+
+const arrondissementsMunicipaux = communesTotales
   .filter(c => c.type === 'arrondissement-municipal')
   .map(c => ({code: c.code, nom: c.nom, type: 'COM'}))
 
@@ -78,12 +80,19 @@ function getCommuneActuelle(communeEntry) {
   }
 }
 
+const codesActifs = new Set(
+  communesTotales
+    .filter(c => ['commune-actuelle', 'arrondissement-municipal'].includes(c.type))
+    .map(c => c.code)
+)
+
+// Fonction valable pour les communes actuelles uniquement
 function getCodesMembres(commune) {
   return uniq([
     commune.code,
     ...flattenDeep((commune.membres || []).map(getCodesMembres)),
     ...flattenDeep(commune.predecesseur ? getCodesMembres(commune.predecesseur) : [commune.code])
-  ])
+  ]).filter(c => c === commune.code || !codesActifs.has(c))
 }
 
 function getCommunes() {
