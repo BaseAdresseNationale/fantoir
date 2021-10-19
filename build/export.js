@@ -1,7 +1,7 @@
 const {chain} = require('lodash')
 const {remove} = require('fs-extra')
 const bluebird = require('bluebird')
-const Keyv = require('@livingdata/keyv')
+const Keyv = require('keyv')
 const {getCommunes, getCodesMembres} = require('./cog')
 
 async function exportAsKeyValueStore(model, destPath) {
