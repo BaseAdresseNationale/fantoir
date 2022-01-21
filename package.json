@@ -1,6 +1,6 @@
 {
   "name": "@etalab/fantoir",
-  "version": "0.10.2",
+  "version": "0.11.0",
   "description": "Toolkit for FANTOIR data manipulation in JS",
   "publishConfig": {
     "access": "public"
