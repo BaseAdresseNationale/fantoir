@@ -35,27 +35,6 @@ function normalizeCodeCommune(codeCommune) {
   return codeCommune
 }
 
-function getCodeDepartement(codeCommune) {
-  return codeCommune.startsWith('97') ? codeCommune.substr(0, 3) : codeCommune.substr(0, 2)
-}
-
-const COM = {
-  97123: {code: '97123', nom: 'Saint-Barthelemy', type: 'COM'},
-  97127: {code: '97127', nom: 'Saint-Martin', type: 'COM'}
-}
-
-function getCommune(codeCommune) {
-  if (codeCommune in COM) {
-    return COM[codeCommune]
-  }
-
-  const candidates = byCodeCommune[`COM${codeCommune}`]
-
-  if (candidates) {
-    return candidates.find(c => !c.dateFin)
-  }
-}
-
 function getCommuneActuelle(communeEntry) {
   if (typeof communeEntry === 'string') {
     const candidates = byCodeCommune[`COM${normalizeCodeCommune(communeEntry)}`]
@@ -101,4 +80,4 @@ function getCommunes() {
     .concat(arrondissementsMunicipaux)
 }
 
-module.exports = {getCommunes, getCodesMembres, getCodeDepartement, getCommune, getCommuneActuelle}
+module.exports = {getCommunes, getCodesMembres, getCommuneActuelle}
