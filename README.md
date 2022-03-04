@@ -16,7 +16,7 @@ yarn add @etalab/fantoir
 
 ```js
 const {createFantoirCommune} = require('@etalab/fantoir')
-const fantoirCommune = await createFantoirCommune('54099')
+const fantoirCommune = await createFantoirCommune('54099', options)
 
 // Rechercher une voie
 fantoirCommune.findVoie('rue du parc')
@@ -33,7 +33,7 @@ zcat fantoir-* | yarn build
 
 ### Configuration
 
-Le chemin vers la base FANTOIR (`FANTOIR_PATH`) doit être renseigné obligatoirement.
+Le chemin vers la base FANTOIR doit être renseigné soit via l’option `fantoirPath` soit via la variable d’environnement `FANTOIR_PATH`.
 
 ## Licence
 
