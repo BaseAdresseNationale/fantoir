@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@etalab/adresses-util": "^0.8.2",
-    "@keyv/sqlite": "^3.0.0",
-    "keyv": "^4.1.1",
+    "@keyv/sqlite": "^3.5.1",
+    "keyv": "^4.2.8",
     "leven": "^3.1.0",
     "lodash": "^4.17.21"
   },
@@ -29,8 +29,8 @@
     "@etalab/fantoir-parser": "^0.5.0",
     "bluebird": "^3.7.2",
     "chalk": "^4.1.2",
-    "debug": "^4.3.3",
-    "fs-extra": "^10.0.0",
+    "debug": "^4.3.4",
+    "fs-extra": "^10.1.0",
     "gunzip-stream": "^1.0.1",
     "xo": "^0.24.0"
   },
