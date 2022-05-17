@@ -2,10 +2,9 @@ const {keyBy} = require('lodash')
 
 const communes = require('@etalab/decoupage-administratif/data/communes.json')
   .filter(c => ['commune-actuelle', 'arrondissement-municipal'].includes(c.type))
-  .concat([
-    {code: '97127', nom: 'Saint-Martin'},
-    {code: '97123', nom: 'Saint-Barthélémy'}
-  ])
+
+communes.find(c => c.code === '97701').anciensCodes = ['97123']
+communes.find(c => c.code === '97801').anciensCodes = ['97127']
 
 const communesIndex = keyBy(communes, 'code')
 
