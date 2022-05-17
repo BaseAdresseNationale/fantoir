@@ -35,6 +35,8 @@ zcat fantoir-* | yarn build
 
 Le chemin vers la base FANTOIR doit être renseigné soit via l’option `fantoirPath` soit via la variable d’environnement `FANTOIR_PATH`.
 
+Les entrées FANTOIR annulées des communes fusionnées sont chargées par défaut. Pour ne charger que le code demandé, il faut renseigner l’option `withAnciennesCommunes: false`.
+
 ## Licence
 
 MIT
