@@ -1,7 +1,7 @@
 const chalk = require('chalk')
 const {chain} = require('lodash')
+const {getCommuneActuelle} = require('../lib/cog')
 const {matchVoies} = require('./match')
-const {getCommuneActuelle} = require('./cog')
 
 function handleCancelledCommunes(model) {
   chain(model.getCancelledCommunes())

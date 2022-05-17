@@ -1,40 +1,28 @@
-const {chain} = require('lodash')
 const {remove} = require('fs-extra')
 const bluebird = require('bluebird')
 const Keyv = require('keyv')
-const {getCommunes} = require('./cog')
 
 async function exportAsKeyValueStore(model, destPath) {
   await remove(destPath)
   const keyv = new Keyv('sqlite://' + destPath)
 
-  await bluebird.each(getCommunes(), async commune => {
-    const anciensCodes = commune.anciensCodes || []
-    const codesCommunesAssocies = [commune.code, ...anciensCodes]
-    const voies = chain(codesCommunesAssocies)
-      .map(codeCommuneAssocie => {
-        return model.getVoies(codeCommuneAssocie)
-          .map(voie => {
-            const flattenedVoie = {...voie}
+  await bluebird.each(model.getCommunes(), async commune => {
+    const voies = model.getVoies(commune.codeCommune)
+      .map(voie => {
+        const flattenedVoie = {...voie}
 
-            if (voie.successeur) {
-              flattenedVoie.successeur = voie.successeur.id
-            }
+        if (voie.successeur) {
+          flattenedVoie.successeur = voie.successeur.id
+        }
 
-            if (voie.predecesseur) {
-              flattenedVoie.predecesseur = voie.predecesseur.id
-            }
+        if (voie.predecesseur) {
+          flattenedVoie.predecesseur = voie.predecesseur.id
+        }
 
-            return flattenedVoie
-          })
+        return flattenedVoie
       })
-      .flatten()
-      .compact()
-      .value()
 
-    if (voies.length > 0) {
-      await keyv.set(commune.code, voies)
-    }
+    await keyv.set(commune.codeCommune, voies)
   })
 }
 
