@@ -50,13 +50,13 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
-"@keyv/sqlite@^3.5.1":
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/@keyv/sqlite/-/sqlite-3.5.1.tgz#425e433f4c6e14546cc7875995e6d4e726134fad"
-  integrity sha512-xoPcE/F5UPK6beRwocoJpiYbBTMeIDAktFIy7LoovdFj/0aRjoFNbiqLzrj31KYFi9zrTPz6w99wH/fluPi9Vg==
+"@keyv/sqlite@^3.6.2":
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/@keyv/sqlite/-/sqlite-3.6.2.tgz#1ab562caf3867d48a07b96ef10ec2d94a9b58346"
+  integrity sha512-DSLP25bhnBnAhLnSbfk2j2xq2lP9XaaYL3voXZJUANNrWH9Ho3Zx16c9EFbtBT24iXGPD2mqSSAklSeiiaTb3w==
   dependencies:
     pify "^5.0.0"
-    sqlite3 "^5.0.3"
+    sqlite3 "^5.1.2"
 
 "@mapbox/node-pre-gyp@^1.0.0":
   version "1.0.9"
@@ -3321,10 +3321,10 @@ sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
 
-sqlite3@^5.0.3:
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/sqlite3/-/sqlite3-5.0.8.tgz#b4b7eab7156debec80866ef492e01165b4688272"
-  integrity sha512-f2ACsbSyb2D1qFFcqIXPfFscLtPVOWJr5GmUzYxf4W+0qelu5MWrR+FAQE1d5IUArEltBrzSDxDORG8P/IkqyQ==
+sqlite3@^5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/sqlite3/-/sqlite3-5.1.2.tgz#f50d5b1482b6972fb650daf6f718e6507c6cfb0f"
+  integrity sha512-D0Reg6pRWAFXFUnZKsszCI67tthFD8fGPewRddDCX6w4cYwz3MbvuwRICbL+YQjBAh9zbw+lJ/V9oC8nG5j6eg==
   dependencies:
     "@mapbox/node-pre-gyp" "^1.0.0"
     node-addon-api "^4.2.0"
