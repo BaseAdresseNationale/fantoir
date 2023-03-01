@@ -1,6 +1,6 @@
 {
   "name": "@etalab/fantoir",
-  "version": "0.14.1",
+  "version": "0.14.3",
   "description": "Toolkit for FANTOIR data manipulation in JS",
   "publishConfig": {
     "access": "public"
@@ -25,7 +25,7 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@etalab/decoupage-administratif": "^2.0.0",
+    "@etalab/decoupage-administratif": "^3.0.0",
     "@etalab/fantoir-parser": "^0.5.0",
     "bluebird": "^3.7.2",
     "chalk": "^4.1.2",
