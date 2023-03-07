@@ -1,12 +1,13 @@
 {
-  "name": "@etalab/fantoir",
+  "name": "@ban-team/fantoir",
   "version": "0.14.1",
   "description": "Toolkit for FANTOIR data manipulation in JS",
   "publishConfig": {
     "access": "public"
   },
   "main": "lib",
-  "repository": "git@github.com:etalab/fantoir.git",
+  "repository": "https://github.com/BaseAdresseNationale/fantoir",
+  "homepage": "https://github.com/BaseAdresseNationale/fantoir",
   "author": "Jérôme Desboeufs <jerome.desboeufs@data.gouv.fr>",
   "license": "MIT",
   "files": [

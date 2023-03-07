@@ -1,4 +1,4 @@
-# @etalab/fantoir [![npm version](https://img.shields.io/npm/v/@etalab/fantoir.svg)](https://www.npmjs.com/package/@etalab/fantoir)
+# @ban-team/fantoir [![npm version](https://img.shields.io/npm/v/@ban-team/fantoir.svg)](https://www.npmjs.com/package/@ban-team/fantoir)
 
 Bibliothèque permettant d'interroger facilement la base [FANTOIR](https://www.data.gouv.fr/fr/datasets/fichier-fantoir-des-voies-et-lieux-dits/).
 
@@ -9,13 +9,13 @@ Cette bibliothèque nécessite [Node.js](https://nodejs.org) version 10 ou supé
 ### Installation
 
 ```
-yarn add @etalab/fantoir
+yarn add @ban-team/fantoir
 ```
 
 ### Utilisation
 
 ```js
-const {createFantoirCommune} = require('@etalab/fantoir')
+const {createFantoirCommune} = require('@ban-team/fantoir')
 const fantoirCommune = await createFantoirCommune('54099', options)
 
 // Rechercher une voie
