@@ -1,6 +1,6 @@
 {
   "name": "@ban-team/fantoir",
-  "version": "0.14.3",
+  "version": "0.15.0",
   "description": "Toolkit for FANTOIR data manipulation in JS",
   "publishConfig": {
     "access": "public"
