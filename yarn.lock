@@ -51,12 +51,12 @@
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
 "@keyv/sqlite@^3.5.1":
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/@keyv/sqlite/-/sqlite-3.5.1.tgz#425e433f4c6e14546cc7875995e6d4e726134fad"
-  integrity sha512-xoPcE/F5UPK6beRwocoJpiYbBTMeIDAktFIy7LoovdFj/0aRjoFNbiqLzrj31KYFi9zrTPz6w99wH/fluPi9Vg==
+  version "3.6.4"
+  resolved "https://registry.yarnpkg.com/@keyv/sqlite/-/sqlite-3.6.4.tgz#5582efe86e3fbbf9a65b895973d73d6d5950c879"
+  integrity sha512-nE7bjOU6lmGn3QBkaAZS+LLvBHebBKDwDbMGlTbhRNJoREam69LZewspGbePb8dpZS1C6IazedVRCq2eb5kFWw==
   dependencies:
     pify "^5.0.0"
-    sqlite3 "^5.0.3"
+    sqlite3 "^5.1.4"
 
 "@mapbox/node-pre-gyp@^1.0.0":
   version "1.0.9"
@@ -3321,10 +3321,10 @@ sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
 
-sqlite3@^5.0.3:
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/sqlite3/-/sqlite3-5.0.8.tgz#b4b7eab7156debec80866ef492e01165b4688272"
-  integrity sha512-f2ACsbSyb2D1qFFcqIXPfFscLtPVOWJr5GmUzYxf4W+0qelu5MWrR+FAQE1d5IUArEltBrzSDxDORG8P/IkqyQ==
+sqlite3@^5.1.4:
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/sqlite3/-/sqlite3-5.1.4.tgz#35f83d368963168b324ad2f0fffce09f3b8723a7"
+  integrity sha512-i0UlWAzPlzX3B5XP2cYuhWQJsTtlMD6obOa1PgeEQ4DHEXUuyJkgv50I3isqZAP5oFc2T8OFvakmDh2W6I+YpA==
   dependencies:
     "@mapbox/node-pre-gyp" "^1.0.0"
     node-addon-api "^4.2.0"
